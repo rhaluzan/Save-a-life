@@ -1,0 +1,387 @@
+body {
+
+    overflow: hidden;
+    width: 100%;
+    max-width: 810px;
+    margin: auto !important;
+
+    #main-container {
+        width: 100%;
+        // height: 610px;
+        display: table;
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+
+        .game-container {
+            width: 490px;
+            float: left;
+        }
+        .sidebar {
+            width: 320px;
+            height: 500px;
+            float: left;
+            background: #294492;
+            position: relative;
+
+            .timing {
+                width: 262px;
+                height: 107px;
+                background: url(../img/tabla-score.png) center bottom no-repeat;
+                display: block;
+                margin: auto;
+                text-align: center;
+                padding-top: 14px;
+                font-size: 4em;
+            }
+
+            .leaderboard {
+                padding: 0 32px;
+
+                h1 {
+                    text-transform: uppercase;
+                    color: #cbd2e3;
+                    font-size: 1.2em;
+                    font-weight: 500;
+                    border-bottom: 1px solid #cbd2e3;
+                    margin: 0.5em 0 0 0;
+                }
+
+                table {
+                    width: 100%;
+                    margin-top: 5px !important;
+                    tbody tr td {
+                        color: #cbd2e3;
+                        padding: 3px 0;
+                    }
+                }
+
+            }
+
+            .logotipi {
+                width: 320px;
+                height: 97px;
+                background-image: url(../img/logo-sidebar.png);
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-color: #DF001C;
+                position: absolute;
+                bottom: 0;
+            }
+
+        }
+
+        &.notLiked {
+
+        }
+
+        &.liked {
+
+        }
+
+        &.notLiked {
+            width: 100%;
+            height: 819px;
+            background-image: url(../img/notLiked.jpg);
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+    }
+
+}
+
+#backgroundCanvas {
+    display: block;
+    margin: auto;
+    position: absolute;
+    z-index: 5;
+}
+#actionCanvas {
+    display: block;
+    margin: 0 0 0 100px;
+    position: absolute;
+    z-index: 10;
+}
+
+
+.leaderboardBtn {
+    background-position:  center right;
+    background-repeat: no-repeat;
+    display: table;
+    padding: 0.3em 2.7em 0.3em 0.7em;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: $body-font-family;
+    cursor: pointer;
+
+    &.red {
+        background-image: url(../img/leaderboardIcon.png);
+        background-color: #e30613;
+        color: #FFF !important;
+
+        &:hover {
+            background-color: #CE111C;
+        }
+    }
+
+    &.blue {
+        background-image: url(../img/leaderboardIcon.png);
+        background-color: #294492;
+        color: #FFF !important;
+
+        &:hover {
+            background-color: #1E387A;
+        }
+    }
+
+    &.white {
+        background-image: url(../img/leaderboardIcon-white.png);
+        background-color: #FFF;
+        color: #294492 !important;
+
+        &:hover {
+            background-color: #DFE2EA;
+        }
+    }
+
+}
+
+.number {
+    width: 50px;
+    float: left;
+    color: #FFF;
+    font-family: $body-font-family;
+
+    .current {
+        font-size: 1.4em;
+    }
+
+}
+
+.points {
+    width: 119px;
+    height: 175px;
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    background: url(../img/points.png) top center;
+
+    .table {
+        height: 118px !important;
+    }
+
+    .numbers {
+        font-family: $body-font-family;
+        font-size: 4.5em;
+        font-weight: bold;
+        color: #FFF;
+    }
+
+}
+
+.table {
+    width: 100%;
+    height: 100%;
+    display: table;
+    margin: auto;
+
+    .content {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+}
+
+.car {
+    position: relative;
+    width: 393px;
+    height: 165px;
+    margin: 10px auto 35px;
+    background: url(../img/resilec-inv.png) center center no-repeat;
+    display: block;
+
+    .invitebox {
+        width: 144px;
+        height: 32px;
+        position: absolute;
+        display: block;
+
+        .img {
+            width: 32px;
+            height: 32px;
+            float: left;
+            border-right: 1px solid #2a3537;
+            background: #dfe3ee;
+
+            &.add {
+                color: #3b5998;
+                font-size: 1em;
+                cursor: pointer;
+
+                &:hover {
+                    background: #CAD1E4;
+                }
+
+            }
+
+        }
+        .text {
+            width: 110px;
+            height: 32px;
+            background: #FFF;
+            float: left;
+            padding: 7px;
+            font-size: 0.75em;
+            font-family: $body-font-family;
+            font-weight: normal;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+
+            .content {
+                text-align: left;
+            }
+
+        }
+
+    }
+
+}
+
+// .leaderboardBtn {
+//     background: url(../img/leaderboardIcon.png) center right no-repeat #e30613;
+//     color: #FFF;
+//     display: inline-block;
+//     padding: 0.3em 2.7em 0.3em 0.7em;
+//     font-weight: 600;
+//     font-size: 1em;
+//     font-family: $body-font-family;
+//     cursor: pointer;
+
+//     &:hover {
+//         background-color: #CE111C;
+//     }
+
+// }
+
+a {
+    cursor: pointer;
+}
+
+.legacy_browser {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    width: 70%;
+    height: 50%;
+    padding: 20px;
+    border: 5px solid gray;
+    background-color: white;
+    z-index:1002;
+    text-align: center;
+    overflow: auto;
+
+    p {
+        padding: 0;
+    }
+}
+.black_overlay {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+
+#info-container {
+    width: 490px;
+    height: 300px;
+    float: left;
+    background: #294492;
+}
+#reward-container {
+    width: 320px;
+    height: 300px;
+    float: left;
+    background: url(../img/nagrade.jpg) center center no-repeat #FFF;
+}
+
+
+.navodila {
+    margin-top: 2.5em;
+    text-align: center;
+
+
+    &.prva, &.druga {
+        border-right: #40589e 1px solid;
+    }
+
+    .number {
+        width: 100%;
+        font-size: 3em;
+        color: #FFF;
+        font-weight: 300;
+        line-height: 1em;
+    }
+    .content {
+        font-size: 1em;
+        color: #FFF;
+        padding: 0 8px;
+    }
+
+}
+
+.otherBtn {
+    background-position:  center right;
+    background-repeat: no-repeat;
+    display: table;
+    padding: 0.3em 2.7em 0.3em 0.7em;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: $body-font-family;
+    cursor: pointer;
+
+    &.white-video {
+        background-image: url(../img/video_nasveti_icon.png);
+        background-color: #FFF;
+        color: #294492 !important;
+
+        &:hover {
+            background-color: #DFE2EA;
+        }
+    }
+
+    &.white-podrobni {
+        background-image: url(../img/podrobni_nasveti_icon.png);
+        background-color: #FFF;
+        color: #294492 !important;
+
+        &:hover {
+            background-color: #DFE2EA;
+        }
+    }
+
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.smallest {
+    text-align: center;
+    font-size: 0.7em;
+    color: #FFF;
+}

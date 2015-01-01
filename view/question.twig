@@ -1,0 +1,106 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div id="main-container" class="liked">
+        <div id="questions">
+            <div class="slideme">
+            {% for question in questions %}
+                <section>
+                    <div class="bluebox">
+                        <div class="number"><span class="red current">{{ loop.index }}</span>/{{ questions|length }}</div>
+                        <div class="question">
+                            <p>{{ question.question }}</p>
+                        </div>
+                    </div>
+                    <div class="whitebox">
+                        <div class="answers">
+                            <ul>
+                                {% for answer in question.answers %}
+                                <li data-status="{{ answer.status }}">
+                                    <input type="radio" name="iCheck">
+                                    {{ answer.text }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="picture">
+                            <img src="{{ question.picture }}">
+                        </div>
+                        <div class="message good hidden">Čestitamo, to bo pravi odgovor. Prejel si <span>5 točk</span>.</div>
+                        <div class="message error hidden">Žal, odgovor ni pravilen. V drugem poizkusu lahko prejmeš <span>2 točki</span>.</div>
+                    </div>
+                </section>
+            {% endfor %}
+            </div>
+        </div>
+
+        <div class="points">
+            <div class="table">
+                <div class="content">
+                    <span class="numbers">{{points|default("0")}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="sign-2" id="next"></div>
+
+    </div>
+{% endblock %}
+
+{% block footercontents %}
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <script>window.jQuery || document.write('<script src="//{{app.request.host}}{{ app.request.basepath }}/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>document.write('<script src="//{{app.request.host}}{{ app.request.basepath }}/fb-fs/tdfriendselector.js"><\/script>')</script>
+    <script>
+    $(document).ready(function() {
+      $.ajaxSetup({ cache: true });
+      $.getScript('//connect.facebook.net/sl_SI/all.js', function(){
+        FB.init({
+            appId: '784971438183202',
+            //channelUrl: '//yourapp.com/channel.html',
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+        });
+
+        FB.Canvas.setSize({ width: 810, height: $('body').height() });
+
+        FB.Canvas.setDoneLoading( function(response) {
+            FB.Canvas.setAutoGrow();
+        });
+
+      });
+    });
+    </script>
+    <script src="//{{app.request.host}}{{ app.request.basepath }}/js/plugins.js"></script>
+    <script src="//{{app.request.host}}{{ app.request.basepath }}/js/main.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('input').iCheck({
+            radioClass: 'iradio_flat-blue',
+            handle: 'radio',
+            checkedClass: 'checked',
+        });
+
+        $('#questions').slideme({
+            transition: 'slide',
+            css3: true
+        });
+        $.ajax({
+            url: '//haluzan.com/biz/app/GoClick/dars/1/web/index.php/api/lastAnswer',
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            async: false,
+            success: function(msg) {
+                console.log(msg);
+                if(msg.lastAnswered >= 0 && msg.lastAnswered != null) {
+                    console.log('Move to the last answered question.');
+                    $('#questions').slideme('playTo', parseInt(msg.lastAnswered)+1);
+                } else {
+                    console.log('No answere was answered today.');
+                }
+            }
+        });
+    });
+    </script>
+{% endblock %}

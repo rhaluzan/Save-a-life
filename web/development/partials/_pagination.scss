@@ -1,0 +1,30 @@
+#pagination {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    .dots {
+        padding: 7px;
+        color: #2a4593;
+        text-decoration: none;
+        font-size: 0.8em;
+    }
+
+    .page {
+        padding: 7px;
+        color: #2a4593;
+        text-decoration: none;
+        font-size: 0.8em;
+
+        &.current {
+            color: #282425;
+            font-weight: bold;
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+    }
+
+}

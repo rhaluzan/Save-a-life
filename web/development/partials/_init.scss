@@ -1,0 +1,44 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+ img { display: block; max-width: 100%; display: inline-block; vertical-align: middle; -ms-interpolation-mode: bicubic; }
+
+
+// FONTS
+// @font-face {
+//     font-family: 'DIN regular';
+//     src: url('../fonts/dinpro-regular-webfont.eot');
+//     src: url('../fonts/dinpro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+//          url('../fonts/dinpro-regular-webfont.woff') format('woff'),
+//          url('../fonts/dinpro-regular-webfont.ttf') format('truetype');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'DIN bold';
+//     src: url('../fonts/dinpro-bold-webfont.eot');
+//     src: url('../fonts/dinpro-bold-webfont.eot?#iefix') format('embedded-opentype'),
+//          url('../fonts/dinpro-bold-webfont.woff') format('woff'),
+//          url('../fonts/dinpro-bold-webfont.ttf') format('truetype');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'DIN medium';
+//     src: url('../fonts/dinpro-medium-webfont.eot');
+//     src: url('../fonts/dinpro-medium-webfont.eot?#iefix') format('embedded-opentype'),
+//          url('../fonts/dinpro-medium-webfont.woff') format('woff'),
+//          url('../fonts/dinpro-medium-webfont.ttf') format('truetype');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'DIN light';
+//     src: url('../fonts/dinpro-light-webfont.eot');
+//     src: url('../fonts/dinpro-light-webfont.eot?#iefix') format('embedded-opentype'),
+//          url('../fonts/dinpro-light-webfont.woff') format('woff'),
+//          url('../fonts/dinpro-light-webfont.ttf') format('truetype');
+//     font-weight: normal;
+//     font-style: normal;
+// }

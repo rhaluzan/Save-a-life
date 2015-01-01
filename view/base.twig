@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>REŠI ŽIVLJENJE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="//{{app.request.host}}{{ app.request.basepath }}/css/normalize.css">
+        <link rel="stylesheet" href="//{{app.request.host}}{{ app.request.basepath }}/css/main.css">
+        <script src="//{{app.request.host}}{{ app.request.basepath }}/js-old/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        <div id="legacyBrowser" class="legacy_browser">
+            <p>Vaš brskalnik je zastarel. Ima več varnostnih pomankljivosti in morda ne bo pravilno prikazal te ali drugih strani. Priporočamo vam, da ga <a href="http://browsehappy.com/">posodobite</a>.</p>
+        </div>
+        <div id="fade" class="black_overlay" ></div>
+        <!--[if lt IE 8]>
+            <p class="browsehappy" style="text-align: center;">Vaš brskalnik je zastarel. Ima več varnostnih pomankljivosti in morda ne bo pravilno prikazal te ali drugih strani. Priporočamo vam, da ga <a href="http://browsehappy.com/">posodobite</a>.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        {% block content %}
+
+        {% endblock %}
+
+        {% block footer %}
+
+        {% endblock %}
+        {# <center><a href="https://haluzan.com/biz/app/GoClick/dars/1/web/Pravila_kviza_Vozimo_pametno.pdf" target="_blank" style="font-size: 0.6em; text-decoration: none; color: #666;">Pravila kviza Vozimo pametno</a></center> #}
+        <script>
+        function hasClass(ele,cls) {
+            return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+        }
+        if(hasClass(document.querySelector('html'), "no-canvas")){
+            document.getElementById('legacyBrowser').style.display='block';
+            document.getElementById('fade').style.display='block'
+        };
+        </script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-46019779-3', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+
+        </script>
+
+        {% block footercontents %}
+
+        {% endblock %}
+    </body>
+</html>

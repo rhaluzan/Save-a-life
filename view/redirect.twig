@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div id="main-container" class="notLiked">
+
+
+    </div>
+{% endblock %}
+
+{% block footercontents %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        window.top.location.href = "https://www.facebook.com/Vozimo.pametno/app_299186130254281"; // TODO: REDIRECT
+        $.ajaxSetup({ cache: true });
+        $.getScript('//connect.facebook.net/sl_SI/all.js', function(){
+            FB.init({
+                appId: '784971438183202',
+                //channelUrl: '//yourapp.com/channel.html',
+                status     : true, // check login status
+                cookie     : true, // enable cookies to allow the server to access the session
+                xfbml      : true  // parse XFBML
+            });
+
+            FB.Canvas.setSize({ width: 810, height: $('body').height() });
+
+            FB.Canvas.setDoneLoading( function(response) {
+                FB.Canvas.setAutoGrow();
+            });
+
+        });
+    });
+    </script>
+{% endblock %}

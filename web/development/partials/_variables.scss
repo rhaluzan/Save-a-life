@@ -1,0 +1,30 @@
+$row-width: emCalc(800) !default;
+$column-gutter: emCalc(25) !default;
+$total-columns: 12 !default;
+
+$small-screen: 480px !default;
+$medium-screen: 768px !default;
+$large-screen: 810 !default;
+
+$include-html-grid-classes: true !default;
+$include-html-global-classes: false;
+
+
+// Pie
+$pie-behavior: stylesheet-url("PIE.htc");
+
+
+// Fonts
+$body-bg: #fff !default;
+$body-font-color: #222 !default;
+$body-font-family: 'Calibri', Arial !default; //Trebuchet MS, Tahoma, Arial !default;
+$body-font-weight: normal !default;
+$body-font-style: normal !default;
+
+
+// Cursors
+$cursor-crosshair-value: crosshair !default;
+$cursor-default-value: default !default;
+$cursor-pointer-value: pointer !default;
+$cursor-help-value: help !default;
+$cursor-text-value: text !default;

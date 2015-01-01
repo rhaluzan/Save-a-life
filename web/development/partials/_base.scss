@@ -1,0 +1,37 @@
+// Foundation
+@import "../vendor/foundation/foundation/variables.scss";
+
+// Global styles
+
+// $body-bg: #fff;
+//$body-font-color: #FFF;
+// $body-font-family: "Calibri", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+// $body-font-weight: normal;
+// $body-font-style: normal;
+html, body {
+	background: #FFF !important;
+    font-family: "Calibri", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+
+// Mixins
+
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -o-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+// Dependancies
+@import "compass/css3";
+@import "compass/css3/pie";
+@import "variables.scss";
+@import "../vendor/foundation/foundation.scss";
+
+// Imports
+@import "init.scss";
+@import "layout.scss";
+@import "statusmsg.scss";
+@import "tables.scss";
+@import "pagination.scss";
+@import "revealModalOverrides.scss";

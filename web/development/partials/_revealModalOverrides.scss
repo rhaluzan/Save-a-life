@@ -1,0 +1,113 @@
+.reveal-modal {
+    @include border-radius(6px);
+    padding: 0 20px 0px;
+
+    h1 {
+        color: #294a97;
+        font-size: 2em;
+        text-transform: uppercase;
+        margin-bottom: 0;
+    }
+
+    .znak {
+        width: 156px;
+        height: 156px;
+        background: url('../img/pozor.png') center center no-repeat;
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        margin-left: -78px;
+        top: -78px;
+    }
+
+    p {
+        font-size: 0.95em;
+        line-height: 1.5em;
+    }
+
+    p.alert {
+        font-size: 1.35em;
+        padding-top: 78px;
+        text-align: center;
+    }
+
+    .red {
+        text-transform: uppercase;
+        color: #E30613;
+        font-weight: 500;
+        font-size: 1.4em;
+    }
+
+    .continue {
+        width: 260px;
+        height: 66px;
+        background: url(../img/tabla-continue.png) center bottom no-repeat;
+        margin: auto;
+        display: block;
+        cursor: pointer;
+    }
+
+    .startGame {
+        width: 230px;
+        height: 66px;
+        background: url('../img/tabla-start.png') center bottom no-repeat;
+        margin: auto;
+        display: block;
+        cursor: pointer;
+    }
+
+    .leaveGame {
+        // width: 226px;
+        // height: 67px;
+        // background: url('../img/tabla-endgame.png') center bottom no-repeat;
+        color: #294492;
+        text-align: center;
+        margin: auto;
+        display: block;
+        cursor: pointer;
+        font-weight: bold;
+        padding: 13px 0 17px 25px;
+    }
+
+    .inviteFrnds {
+        width: 226px;
+        height: 67px;
+        background: url('../img/tabla-invite.png') center bottom no-repeat;
+        margin: auto;
+        display: block;
+        cursor: pointer;
+    }
+
+    .goNext {
+        width: 226px;
+        height: 67px;
+        background: url('../img/tabla-naprej.png') center bottom no-repeat;
+        margin: auto;
+        display: block;
+        cursor: pointer;
+    }
+
+    .zacetek {
+        width: 260px;
+        height: 66px;
+        background: url('../img/tabla-nazacetek.png') center bottom no-repeat;
+        margin: auto;
+        display: block;
+        cursor: pointer;
+    }
+
+    table {
+        margin: 0;
+
+        tr, td {
+            padding: 4px 0;
+        }
+        thead tr {
+            padding-bottom: 10px;
+        }
+        tbody {
+            margin-top: 10px;
+        }
+    }
+
+}

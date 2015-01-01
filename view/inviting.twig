@@ -1,0 +1,132 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div id="main-container" class="liked">
+
+        <div class="bluebox">
+            <div class="question">
+                <p>ČESTITAMO, <br />
+                    pravilno si odgovoril na vsa vprašanja, kar ti je prineslo <span class="red">{{ points|default('X') }}</span> točk.<br />
+                    S tem si si prislužil značko »VAREN VOZNIK«,<br />
+                    zato lahko <span class="red">povabiš 4 prijatelje</span> in jih odpelješ na ZIMSKI IZLET!</p>
+                    {# <small style="display: block; margin-top: 10px;">Za najboljše tekmovalce smo pripravili mini zimska presenečenja.</small> #}
+            </div>
+        </div>
+        <div class="whitebox">
+            <div class="car">
+                <div class="invitebox" style="left: 75px;background: #FFF;top: 162px;">
+                    {% if fbid1 %}
+                        <div class="img" style="background-image: url(http://graph.facebook.com/{{fbid1|default("none")}}/picture); background-size: cover; filter': 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://graph.facebook.com/{{fbid1|default("none")}}/picture', sizingMethod='scale')">
+                        <div class="table"><div class="content"></div></div>
+                    {% else %}
+                        <div class="img add">
+                            <div class="table"><div class="content">+</div></div>
+                    {% endif %}
+                    </div>
+                    <div class="text">
+                        {% if name1 %}
+                            <div class="table"><div class="content">{{name1}}</div></div>
+                        {% else %}
+                            <div class="table"><div class="content">Dodaj prijatelja</div></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="invitebox" style="left: 75px;background: #FFF;top: 118px;">
+                    {% if fbid2 %}
+                        <div class="img" style="background-image: url(http://graph.facebook.com/{{fbid2|default("none")}}/picture); background-size: cover; filter': 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://graph.facebook.com/{{fbid2|default("none")}}/picture', sizingMethod='scale')">
+                            <div class="table"><div class="content"></div></div>
+                    {% else %}
+                        <div class="img add">
+                            <div class="table"><div class="content">+</div></div>
+                    {% endif %}
+                    </div>
+                    <div class="text">
+                        {% if name2 %}
+                            <div class="table"><div class="content">{{name2}}</div></div>
+                        {% else %}
+                            <div class="table"><div class="content">Dodaj prijatelja</div></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="invitebox" style="left: 75px;background: #FFF;top: 74px;">
+                    {% if fbid3 %}
+                        <div class="img" style="background-image: url(http://graph.facebook.com/{{fbid3|default("none")}}/picture); background-size: cover; filter': 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://graph.facebook.com/{{fbid3|default("none")}}/picture', sizingMethod='scale')">
+                            <div class="table"><div class="content"></div></div>
+                    {% else %}
+                        <div class="img add">
+                            <div class="table"><div class="content">+</div></div>
+                    {% endif %}
+                    </div>
+                    <div class="text">
+                        {% if name3 %}
+                            <div class="table"><div class="content">{{name3}}</div></div>
+                        {% else %}
+                            <div class="table"><div class="content">Dodaj prijatelja</div></div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="invitebox" style="left: 264px;background: #FFF;top: 162px;">
+                    {% if fbid4 %}
+                        <div class="img" style="background-image: url(http://graph.facebook.com/{{fbid4|default("none")}}/picture); background-size: cover; filter': 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://graph.facebook.com/{{fbid4|default("none")}}/picture', sizingMethod='scale')">
+                            <div class="table"><div class="content"></div></div>
+                    {% else %}
+                        <div class="img add">
+                            <div class="table"><div class="content">+</div></div>
+                    {% endif %}
+                    </div>
+                    <div class="text">
+                        {% if name4 %}
+                            <div class="table"><div class="content">{{name4}}</div></div>
+                        {% else %}
+                            <div class="table"><div class="content">Dodaj prijatelja</div></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="invitebox" id="me" style="left: 264px;background: #FFF;top: 74px;">
+                    <div class="img add" style="background-image: url(http://graph.facebook.com/{{me|default("none")}}/picture); background-size: cover; filter': 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://graph.facebook.com/{{me|default("none")}}/picture', sizingMethod='scale')">
+                    </div>
+                    <div class="text">
+                        <div class="table"><div class="content">Jaz</div></div>
+                    </div>
+                </div>
+            </div>
+            <a class="leaderboard" style="bottom: 20px;position: absolute;display: block;" data-url="leaderboard">LESTVICA</a>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block footercontents %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="//{{app.request.host}}{{ app.request.basepath }}/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>document.write('<script src="//{{app.request.host}}{{ app.request.basepath }}/fb-fs/tdfriendselector.js"><\/script>')</script>
+    <script>
+    $(document).ready(function() {
+        var i;
+      $.ajaxSetup({ cache: true });
+      $.getScript('//connect.facebook.net/sl_SI/all.js', function(){
+        FB.init({
+            appId: '784971438183202',
+            //channelUrl: '//yourapp.com/channel.html',
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+        });
+
+        FB.Canvas.setSize({ width: 810, height: $('body').height() });
+
+        FB.Canvas.setDoneLoading( function(response) {
+            FB.Canvas.setAutoGrow();
+        });
+
+        FB.api('/me', function(response) {
+            $('#me .img.add').css({'background': 'url("http://graph.facebook.com/' + ids[i] + '/picture")', 'background-size': 'cover', ' filter': 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://graph.facebook.com/' + ids[i] + '/picture", sizingMethod="scale")'})
+        });
+
+      });
+    });
+    </script>
+    <script src="//{{app.request.host}}{{ app.request.basepath }}/js/plugins.js"></script>
+    <script src="//{{app.request.host}}{{ app.request.basepath }}/js/main.js"></script>
+{% endblock %}

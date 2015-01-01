@@ -1,0 +1,189 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div id="main-container" class="liked">
+        <div class="game-container">
+            <div style="position: relative; margin: auto; display: block; width: 490px; height: 500px;">
+                <canvas id="backgroundCanvas" width="490" height="500"></canvas>
+                <canvas id="actionCanvas" width="220" height="500"></canvas>
+                <div style="position: absolute;right: 19px;bottom: 7px;z-index: 9;width: 130px;color: #FFF;text-transform: uppercase;">Vozilo odmakneš s klikom nanj.</div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="timing">
+                <div class="timer">00:00:00</div>
+            </div>
+            <div class="leaderboard">
+                <h1>Lestvica top igralcev</h1>
+                <table>
+                    <tbody>
+                        {% set counter = 1 %}
+                        {% for player in topLeaderboard %}
+                            <tr data-fbid="{{ player.user_fbid }}">
+                                <td>{{ counter }}.</td>
+                                <td style="/*color: #da2128*/">{{ player.name }}</td>
+                                <td>{{ player.finalTime }}</td>
+                            </tr>
+                            {% set counter = counter + 1 %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a data-url="leaderboard" class="leaderboardBtn white" style="float: right; margin-top: 5px;">LESTVICA</a>
+            </div>
+            <div class="logotipi"></div>
+        </div>
+    </div>
+    <div id="info-container" style="z-index: 99; position: relative;">
+        <div class="row">
+            <div class="large-4 columns navodila prva">
+                <div class="number">1.</div>
+                <div class="content">Vozilo umaknemo na levo/desno stran vozišča.</div>
+            </div>
+            <div class="large-4 columns navodila druga">
+                <div class="number">2.</div>
+                <div class="content">Pazimo na varnostno razdaljo.</div>
+            </div>
+            <div class="large-4 columns navodila">
+                <div class="number">3.</div>
+                <div class="content">Omogočimo prost prehod intervencijskega vozila.</div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 2em;">
+            <div class="large-12 columns">
+                <a href="http://www.dars.si/Dokumenti/Napotki/Varna_voznja/Pravilno_razvrscanje_ob_nesreci_798.aspx" target="_blank" class="otherBtn white-video left">Video nasveti</a>
+                <a href="http://www.dars.si/Dokumenti/Napotki/Varna_voznja/Nasveti_za_varno_voznjo/Pravilno_razvrscanje_885.aspx" target="_blank" class="otherBtn white-podrobni right">Podrobni nasveti</a>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1.7em; text-align: center;">
+            <div class="large-12 columns">
+                <a href="//{{app.request.host}}{{ app.request.basepath }}/Pravila_in_pogoji_Resi_zivljenje.pdf" class="smallest" target="_blank">Splošni pogoji</a>
+            </div>
+        </div>
+    </div>
+    <div id="reward-container"  style="z-index: 99; position: relative;"></div>
+
+    <div id="alert" class="reveal-modal small" data-reveal>
+        <div class="znak"></div>
+        <p class="alert"><span class="red">USTAVLJANJE IN UMIKANJE<br /> NA ODSTAVNI PAS V TEM<br /> PRIMERU NI DOVOLJENO!</span><br />Z odmikanjem na odstavni pas si<br />priigral/-a 3 dodatne sekunde na<br />poti do ponesrečencev.</p>
+        <div class="continue" style="margin-top: 30px;"></div>
+    </div>
+
+    <div id="start" class="reveal-modal medium" data-reveal>
+        <div class="row">
+            <div class="large-8 columns">
+                <h1>Kako igrati?</h1>
+                <p>Reševalno vozilo na poti do kraja prometne nesreče ovirajo nepravilno razvrščena vozila.</p>
+                <p>Tvoja NALOGA je, da odmakneš nepravilno razvrščena vozila in tako omogočiš reševalnim vozilom hitrejši dostop do ponesrečencev. S tem se možnost preživetja poveča tudi do 40 %!</p>
+                <p style="font-weight: bold;">Vozila ODMAKNEŠ z ENIM KLIKOM nanje. Vendar PAZI, če na vozila klikneš 2x, jih to prestavi na odstavni pas.</p>
+            </div>
+            <div class="large-4 columns">
+                <img src="https://haluzan.com/biz/app/GoClick/dars/2/web/img/mouse.jpg" style="margin: 70px auto 0; display: block;">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="large-7 columns">
+                <div class="startGame"></div>
+            </div>
+            <div class="large-5 columns">
+                <a data-url="leaderboard" class="leaderboardBtn blue" style="margin: 8px auto 0; display: table;">LESTVICA</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="congrats" class="reveal-modal medium" data-reveal style="padding: 0;">
+        <div class="row">
+            <div class="large-12 columns">
+                <h1>Čestitamo!</h1>
+                <p>Uspešno si odmaknil/-a vsa nepravilno razvrščena vozila in poskrbel/-a, da je reševalno vozilo hitro prispelo na kraj prometne nesreče.</p>
+                <p>Tvoj končni čas je <span class="timer" style="font-weight: bold; font-size: 1.7em;">00:00:00</span>. Na lestvici si uvrščen/-a na <span class="currentRank" style="font-weight: bold; font-size: 1.7em;">XX</span>. mesto.</p>
+            </div>
+        </div>
+        <div style="background: #e9ecf5; width: 100%; -webkit-border-radius: 0 0 6px 6px; -moz-border-radius: 0 0 6px 6px; -ms-border-radius: 0 0 6px 6px; -o-border-radius: 0 0 6px 6px; border-radius: 0 0 6px 6px;">
+            <div class="row">
+                <div class="large-12 columns">
+                    <p>Rezultat lahko izboljšaš tako, da k igranju povabiš do 5 prijateljev. Vsak povabljen prijatelj bo tvoj rezultat izboljšal za 1 sekundo.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="car">
+                        <div class="invitebox" style="left: 45px; background: #FFF; top: 17px;">
+                             <div class="img add" data-fbid="">
+                                <div class="table"><div class="content">+</div></div>
+                            </div>
+                            <div class="text">
+                                <div class="table"><div class="content">Dodaj prijatelja</div></div>
+                            </div>
+                        </div>
+
+                        <div class="invitebox" style="left: 45px; background: #FFF; top: 65px;">
+                             <div class="img add" data-fbid="">
+                                <div class="table"><div class="content">+</div></div>
+                            </div>
+                            <div class="text">
+                                <div class="table"><div class="content">Dodaj prijatelja</div></div>
+                            </div>
+                        </div>
+
+                        <div class="invitebox" style="left: 45px; background: #FFF; top: 112px;">
+                             <div class="img add" data-fbid="">
+                                <div class="table"><div class="content">+</div></div>
+                            </div>
+                            <div class="text">
+                                <div class="table"><div class="content">Dodaj prijatelja</div></div>
+                            </div>
+                        </div>
+
+                        <div class="invitebox" style="left: 207px; background: #FFF; top: 17px;">
+                             <div class="img add" data-fbid="">
+                                <div class="table"><div class="content">+</div></div>
+                            </div>
+                            <div class="text">
+                                <div class="table"><div class="content">Dodaj prijatelja</div></div>
+                            </div>
+                        </div>
+
+                        <div class="invitebox" style="left: 207px; background: #FFF; top: 112px;">
+                             <div class="img add" data-fbid="">
+                                <div class="table"><div class="content">+</div></div>
+                            </div>
+                            <div class="text">
+                                <div class="table"><div class="content">Dodaj prijatelja</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="large-6 columns">
+                </div>
+                <div class="large-6 columns">
+                    <div data-url="index.php/leaderboard" class="goNext"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footercontents %}
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '299186130254281',
+          xfbml      : true,
+          version    : 'v2.0',
+          cookies    : true,
+          status     : true
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/sl_SI/sdk/debug.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="//{{app.request.host}}{{ app.request.basepath }}/compressed/all.js"></script>
+{% endblock %}

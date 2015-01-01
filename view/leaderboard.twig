@@ -1,0 +1,185 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div id="main-container" class="liked">
+        <div class="game-container">
+            <div style="position: relative; margin: auto; display: block; width: 490px; height: 500px;">
+                <canvas id="backgroundCanvas" width="490" height="500"></canvas>
+                <canvas id="actionCanvas" width="220" height="500"></canvas>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="timing">
+                <div id="timer">00:00:00</div>
+            </div>
+            <div class="leaderboard">
+                <h1>Lestvica vodilnih</h1>
+                <table>
+                    <tbody>
+                        {% set counter = 1 %}
+                        {% for player in topLeaderboard %}
+                            <tr data-fbid="{{ player.user_fbid }}">
+                                <td>{{ counter }}.</td>
+                                <td style="/*color: #da2128*/">{{ player.name }}</td>
+                                <td>{{ player.finalTime }}</td>
+                            </tr>
+                            {% set counter = counter + 1 %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a data-url="leaderboard" class="leaderboardBtn white" style="float: right; margin-top: 5px;">LESTVICA</a>
+            </div>
+            <div class="logotipi"></div>
+        </div>
+    </div>
+
+    <div id="info-container" style="z-index: 99; position: relative;">
+        <div class="row">
+            <div class="large-4 columns navodila prva">
+                <div class="number">1.</div>
+                <div class="content">Vozilo umaknemo na levo/desno stran vozišča.</div>
+            </div>
+            <div class="large-4 columns navodila druga">
+                <div class="number">2.</div>
+                <div class="content">Pazimo na varnostno razdaljo.</div>
+            </div>
+            <div class="large-4 columns navodila">
+                <div class="number">3.</div>
+                <div class="content">Omogočimo prost prehod intervencijskega vozila.</div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 2em;">
+            <div class="large-12 columns">
+                <a href="http://www.dars.si/Dokumenti/Napotki/Varna_voznja/Pravilno_razvrscanje_ob_nesreci_798.aspx" target="_blank" class="otherBtn white-video left">Video nasveti</a>
+                <a href="http://www.dars.si/Dokumenti/Napotki/Varna_voznja/Nasveti_za_varno_voznjo/Pravilno_razvrscanje_885.aspx" target="_blank" class="otherBtn white-podrobni right">Podrobni nasveti</a>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1.7em; text-align: center;">
+            <div class="large-12 columns">
+                <a href="//{{app.request.host}}{{ app.request.basepath }}/Pravila_in_pogoji_Resi_zivljenje.pdf" class="smallest" target="_blank">Splošni pogoji</a>
+            </div>
+        </div>
+    </div>
+    <div id="reward-container"</div>
+
+    <div id="leaderboard" class="reveal-modal large" data-reveal>
+        <div class="row">
+            <div class="large-12 large-centered columns">
+                <h1>Lestvica</h1>
+                <div class="row" style="height: 270px;">
+                    <div class="large-6 columns">
+                            <table>
+                                <thead>
+                                    <tr>
+                                      <th width="50">mesto</th>
+                                      <th width="200">ime in priimek</th>
+                                      <th width="50">čas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% set counter = startCount %}
+
+                                    {% for player in results %}
+
+                                        {% if counter <= 8 %}
+                                            <tr data-fbid="{{ player.user_fbid }}">
+                                                <td>{{ counter }}.</td>
+                                                <td style="/*color: #da2128*/">{{ player.name }}</td>
+                                                <td>{{ player.finalTime }}</td>
+                                            </tr>
+                                        {% else %}
+                                            <tr data-fbid="{{ player.user_fbid }}">
+                                                <td>{{ counter }}.</td>
+                                                <td>{{ player.name }}</td>
+                                                <td>{{ player.finalTime }}</td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {% if loop.index == 10 %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        <div class="large-6 columns">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                      <th width="50">mesto</th>
+                                                      <th width="200">ime in priimek</th>
+                                                      <th width="50">čas</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                        {% endif %}
+
+                                        {% set counter = counter + 1 %}
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <div id="pagination">
+                                {% for links in pagination %}
+                                    {% if curPage == links %}
+                                        <a class="page current" href="{{ path('leaderboard') }}/{{ links }}" data-url="leaderboard/{{ links }}">{{ links }}</a>
+                                    {% elseif links == "..." %}
+                                        <span class="dots">...</span>
+                                    {% elseif links == "«" %}
+                                        <a class="page" href="
+                                        {% if (curPage - 1) == 0 %}
+                                            {{ path('leaderboard') }}/1" data-url="leaderboard/1
+                                        {% else %}
+                                            {{ path('leaderboard') }}/{{ curPage - 1 }}" data-url="leaderboard/{{ curPage - 1 }}
+                                        {% endif %}
+                                        ">«</a>
+                                    {% elseif links == "»" %}
+                                        <a class="page" href="{{ path('leaderboard') }}/{{ curPage + 1 }}" data-url="leaderboard/{{ curPage + 1 }}">»</a>
+                                    {% else %}
+                                    <a class="page" href="{{ path('leaderboard') }}/{{ links }}" data-url="leaderboard/{{ links }}">{{ links }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="large-6 columns">
+                        <a href="https://www.facebook.com/Vozimo.pametno" target="_top" class="leaveGame">Zapusti igro</a>
+                    </div>
+                    <div class="large-6 columns">
+                        <a href="https://www.facebook.com/Vozimo.pametno/app_299186130254281" class="zacetek" target="_top"></a> {# // TODO: REDIRECT #}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footercontents %}
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '299186130254281',
+          xfbml      : true,
+          version    : 'v2.0'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="//{{app.request.host}}{{ app.request.basepath }}/compressed/all.js"></script>
+{% endblock %}

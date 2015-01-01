@@ -1,0 +1,7 @@
+{
+  "name": "HTML5-game-for-DARS",
+  "dependencies": {},
+  "devDependencies": {
+    "pixijs": "~1.3.0"
+  }
+}

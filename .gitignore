@@ -1,0 +1,8 @@
+sftp-config.json
+vendor/
+composer.lock
+composer.phar
+.sass-cache
+bower_components/
+doc/
+node_modules/
