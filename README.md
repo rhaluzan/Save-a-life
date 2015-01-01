@@ -18,3 +18,16 @@ At the end you are asked to invite your Facebook friends to compete against your
 - Facebook JavaScript & Facebook API
 - JavaScript was compiles using Grunt
 - CSS was compiled using CodeKit (don't ask me why I did it like that, it was quite some time ago :D)
+
+## Screenshots:
+Gameplay:
+![Gameplay](http://notigo.com/stuff/gameplay.png)
+
+Inviting Facebook friends:
+![Inviting 1](http://notigo.com/stuff/inviting%201.png)
+
+Selecting FB friends:
+![Inviting 2](http://notigo.com/stuff/inviting%202.png)
+
+Leaderboard:
+![Leaderboard](http://notigo.com/stuff/leaderboard.png)
